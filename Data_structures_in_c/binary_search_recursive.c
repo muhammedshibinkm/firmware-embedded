@@ -4,7 +4,7 @@ int binary_search(int *arr, int low,int high, int key)
 {
     if(low<=high)
     {
-        int mid = low+ (high-low)/2;
+        int mid = low+ (high-low)/2; /*it avoids overflow issues that can occur when adding low and high directly, especially when dealing with large values of low and high.*/
         if(arr[mid] == key) {
             return mid;
         } else if(arr[mid] < key) {
