@@ -1,0 +1,29 @@
+Search in a Sorted Array:
+Given a sorted array of integers and a target value, implement binary search to find if the target exists in the array. Return the index of the target if found, otherwise return -1.
+
+Search Insert Position:
+Given a sorted array of integers and a target value, return the index where the target should be inserted in order to maintain the sorted order. If the target is already present in the array, return its index.
+
+Search in Rotated Sorted Array:
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand. Implement binary search to find the target value in the rotated array.
+
+Find Peak Element:
+Given an integer array nums, find a peak element, and return its index. The array may contain multiple peaks, and you may return any peak's index.
+
+Square Root of an Integer:
+Given a non-negative integer x, compute and return the square root of x using binary search. You can return the floor of the square root.
+
+Search in a 2D Matrix:
+Given a 2D matrix where each row is sorted in ascending order and the first integer of each row is greater than the last integer of the previous row, implement binary search to find if a target value exists in the matrix.
+
+First and Last Position of Element in Sorted Array:
+Given a sorted array of integers, find the starting and ending position of a given target value. If the target is not found in the array, return [-1, -1].
+
+Find Minimum in Rotated Sorted Array:
+Suppose an array of length n sorted in ascending order is rotated between 1 and n times. Implement binary search to find the minimum element in the array.
+
+Search a 2D Matrix II:
+Given a 2D matrix sorted in ascending order from left to right and top to bottom, implement binary search to find if a target value exists in the matrix.
+
+Kth Smallest Element in a Sorted Matrix:
+Given an n x n matrix where each row and column are sorted in ascending order, find the kth smallest element in the matrix.
