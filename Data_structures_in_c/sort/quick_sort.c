@@ -7,6 +7,8 @@ void swap(int *el1, int *el2)
     *el2 = *el1 ^ *el2;
     *el1 =  *el1 ^ *el2;
 }
+/*This function takes the last element as pivot, places the pivot element at its correct position in sorted array, 
+and places all smaller elements (smaller than pivot) to the left of the pivot and all greater elements to the right of the pivot.*/
 int partition(int *arr, int low, int high)
 {
     int pivot = high;
