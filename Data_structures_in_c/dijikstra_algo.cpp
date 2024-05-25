@@ -1,3 +1,6 @@
+/*ijkstra's algorithm is a well-known algorithm used to find the shortest paths from 
+    a source vertex to all other vertices in a graph with non-negative edge weights. 
+*/
 #include<iostream>
 #include<queue>
 #include<vector>
