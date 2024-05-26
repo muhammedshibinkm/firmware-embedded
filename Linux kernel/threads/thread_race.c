@@ -32,7 +32,7 @@ int main() {
     pthread_t new_thread_2;
     int *v = malloc(sizeof(int)); // Dynamically allocate memory for v
     if (v == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
+        fprintf(stderr, "Memory allocation failed\n");//function in C is used to send formatted output to a specified stream, 
         return 1;
     }
     *v = 5; // Initialize v
