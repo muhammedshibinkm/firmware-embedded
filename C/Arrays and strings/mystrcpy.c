@@ -7,6 +7,7 @@ void myStrcoy(char *dest, const char *src)
     {
         *dest++ = *src++;
     }
+    *dest = '\0';
     return temp;
 }
 
