@@ -1,66 +1,39 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <semaphore.h>
-#include <unistd.h>
 
-#define NUM_THREADS 5
-#define NUM_RESOURCES 3
+#define MAX_RESOURCES 3
 
-int resources[NUM_RESOURCES]; // Array to represent the shared resources
-sem_t counter_semaphore;
+sem_t semaphore;
+int shared_resource = 0;
 
-void *worker(void *arg) {
-    int thread_id = *((int *)arg);
-
-    // Acquire a permit from the semaphore
-    sem_wait(&counter_semaphore);
-    
-    // Find an available resource
-    int resource_index = -1;
-    for (int i = 0; i < NUM_RESOURCES; ++i) {
-        if (resources[i] == 0) {
-            resource_index = i;
-            resources[i] = thread_id + 1; // Mark the resource as occupied by the thread
-            break;
-        }
-    }
-
-    if (resource_index != -1) {
-        printf("Thread %d is using resource %d\n", thread_id, resource_index);
-        // Simulate some work
-        sleep(1);
-        printf("Thread %d released resource %d\n", thread_id, resource_index);
-        resources[resource_index] = 0; // Release the resource
-    } else {
-        printf("Thread %d couldn't find an available resource\n", thread_id);
-    }
-
-    // Release the permit back to the semaphore
-    sem_post(&counter_semaphore);
-
-    pthread_exit(NULL);
+void* thread_function(void* arg) {
+    sem_wait(&semaphore);  // Decrement the semaphore
+    // Critical section
+    shared_resource++;
+    printf("Shared resource: %d\n", shared_resource);
+    shared_resource--;
+    sem_post(&semaphore);  // Increment the semaphore
+    return NULL;
 }
 
 int main() {
-    pthread_t threads[NUM_THREADS];
-    int thread_ids[NUM_THREADS];
+    pthread_t thread1, thread2, thread3, thread4;
 
-    // Initialize the counter semaphore with the number of resources
-    sem_init(&counter_semaphore, 0, NUM_RESOURCES);
+    sem_init(&semaphore, 0, MAX_RESOURCES);
 
-    // Create threads
-    for (int i = 0; i < NUM_THREADS; ++i) {
-        thread_ids[i] = i;
-        pthread_create(&threads[i], NULL, worker, &thread_ids[i]);
-    }
+    pthread_create(&thread1, NULL, thread_function, NULL);
+    pthread_create(&thread2, NULL, thread_function, NULL);
+    pthread_create(&thread3, NULL, thread_function, NULL);
+    pthread_create(&thread4, NULL, thread_function, NULL);
 
-    // Join threads
-    for (int i = 0; i < NUM_THREADS; ++i) {
-        pthread_join(threads[i], NULL);
-    }
+    pthread_join(thread1, NULL);
+    pthread_join(thread2, NULL);
+    pthread_join(thread3, NULL);
+    pthread_join(thread4, NULL);
 
-    // Destroy the semaphore
-    sem_destroy(&counter_semaphore);
-
+    sem_destroy(&semaphore);
     return 0;
+}
+
 }
